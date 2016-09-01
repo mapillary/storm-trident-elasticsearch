@@ -22,9 +22,9 @@ import com.github.fhuss.storm.elasticsearch.handler.BulkResponseHandler;
 import com.github.fhuss.storm.elasticsearch.Document;
 import com.github.fhuss.storm.elasticsearch.handler.BulkResponseHandler.LoggerResponseHandler;
 import com.github.fhuss.storm.elasticsearch.mapper.TridentTupleMapper;
-import storm.trident.operation.TridentCollector;
-import storm.trident.state.BaseStateUpdater;
-import storm.trident.tuple.TridentTuple;
+import org.apache.storm.trident.operation.TridentCollector;
+import org.apache.storm.trident.state.BaseStateUpdater;
+import org.apache.storm.trident.tuple.TridentTuple;
 
 import java.util.List;
 

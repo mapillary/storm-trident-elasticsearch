@@ -21,8 +21,8 @@ package com.github.fhuss.storm.elasticsearch.state;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import storm.trident.state.OpaqueValue;
-import storm.trident.state.TransactionalValue;
+import org.apache.storm.trident.state.OpaqueValue;
+import org.apache.storm.trident.state.TransactionalValue;
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -51,7 +51,7 @@ public abstract class ValueSerializer<T> implements Serializable {
     public abstract T deserialize(byte[] value) throws IOException;
 
     /**
-     * Basic serializer implementation for {@link storm.trident.state.TransactionalValue}.
+     * Basic serializer implementation for {@link org.apache.storm.trident.state.TransactionalValue}.
      * @param <T> the value type
      */
     public static class NonTransactionalValueSerializer<T> extends ValueSerializer<T> {
@@ -68,7 +68,7 @@ public abstract class ValueSerializer<T> implements Serializable {
     }
 
     /**
-     * Basic serializer implementation for {@link storm.trident.state.TransactionalValue}.
+     * Basic serializer implementation for {@link org.apache.storm.trident.state.TransactionalValue}.
      * @param <T> the value type
      */
     public static class TransactionalValueSerializer<T> extends ValueSerializer<TransactionalValue<T>> {
@@ -88,7 +88,7 @@ public abstract class ValueSerializer<T> implements Serializable {
     }
 
     /**
-     * Basic serializer implementation for {@link storm.trident.state.OpaqueValue}.
+     * Basic serializer implementation for {@link org.apache.storm.trident.state.OpaqueValue}.
      * @param <T> the value type
      */
     public static class OpaqueValueSerializer<T> extends ValueSerializer<OpaqueValue<T>> {

@@ -18,7 +18,7 @@
  */
 package com.github.fhuss.storm.elasticsearch.mapper.impl;
 
-import backtype.storm.tuple.Tuple;
+import org.apache.storm.tuple.Tuple;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.fhuss.storm.elasticsearch.Document;

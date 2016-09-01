@@ -2,8 +2,8 @@ package com.github.fhuss.storm.elasticsearch.state;
 
 import org.junit.Assert;
 import org.junit.Test;
-import storm.trident.state.OpaqueValue;
-import storm.trident.state.TransactionalValue;
+import org.apache.storm.trident.state.OpaqueValue;
+import org.apache.storm.trident.state.TransactionalValue;
 
 import java.io.IOException;
 

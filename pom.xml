@@ -12,19 +12,19 @@
 
     <groupId>com.github.fhuss</groupId>
     <artifactId>storm-elasticsearch</artifactId>
-    <version>0.3.0</version>
+    <version>0.4.0</version>
     <name>Storm Trident Elasticsearch</name>
     <description>Trident API implementation for Elasticsearch</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>1.7</java.version>
-        <storm.version>0.9.3</storm.version>
+        <java.version>1.8</java.version>
+        <storm.version>1.0.2</storm.version>
         <org.slf4j.version>1.7.6</org.slf4j.version>
-        <org.elasticsearch.version>1.0.1</org.elasticsearch.version>
+        <org.elasticsearch.version>2.4.0</org.elasticsearch.version>
         <jackson.databind.version>2.3.2</jackson.databind.version>
         <junit.version>4.11</junit.version>
-        <elasticsearch-test.version>1.2.1</elasticsearch-test.version>
+        <elasticsearch-test.version>2.3.0</elasticsearch-test.version>
         <guava.version>16.0.1</guava.version>
         <commons-lang3.version>3.3</commons-lang3.version>
     </properties>
@@ -114,12 +114,12 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>com.github.tlrx</groupId>
-            <artifactId>elasticsearch-test</artifactId>
-            <version>${elasticsearch-test.version}</version>
-            <scope>test</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.github.tlrx</groupId>-->
+            <!--<artifactId>elasticsearch-test</artifactId>-->
+            <!--<version>${elasticsearch-test.version}</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
 
     </dependencies>
 </project>

@@ -18,12 +18,12 @@
  */
 package com.github.fhuss.storm.elasticsearch.mapper;
 
-import storm.trident.tuple.TridentTuple;
+import org.apache.storm.trident.tuple.TridentTuple;
 
 import java.io.Serializable;
 
 /**
- * Interface for building document from {@link storm.trident.tuple.TridentTuple}.
+ * Interface for building document from {@link org.apache.storm.trident.tuple.TridentTuple}.
  * @param <T>
  */
 public interface TridentTupleMapper<T> extends Serializable {

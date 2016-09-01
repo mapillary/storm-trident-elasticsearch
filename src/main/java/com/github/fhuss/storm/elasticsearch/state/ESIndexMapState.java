@@ -18,10 +18,10 @@
  */
 package com.github.fhuss.storm.elasticsearch.state;
 
-import backtype.storm.task.IMetricsContext;
-import backtype.storm.topology.FailedException;
-import backtype.storm.topology.ReportedFailedException;
-import backtype.storm.tuple.Values;
+import org.apache.storm.task.IMetricsContext;
+import org.apache.storm.topology.FailedException;
+import org.apache.storm.topology.ReportedFailedException;
+import org.apache.storm.tuple.Values;
 import com.github.fhuss.storm.elasticsearch.ClientFactory;
 import com.github.fhuss.storm.elasticsearch.handler.BulkResponseHandler;
 import com.google.common.base.Objects;
@@ -34,18 +34,18 @@ import org.elasticsearch.action.get.MultiGetResponse;
 import org.elasticsearch.client.Client;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import storm.trident.state.OpaqueValue;
-import storm.trident.state.State;
-import storm.trident.state.StateFactory;
-import storm.trident.state.StateType;
-import storm.trident.state.TransactionalValue;
-import storm.trident.state.map.CachedMap;
-import storm.trident.state.map.IBackingMap;
-import storm.trident.state.map.MapState;
-import storm.trident.state.map.NonTransactionalMap;
-import storm.trident.state.map.OpaqueMap;
-import storm.trident.state.map.SnapshottableMap;
-import storm.trident.state.map.TransactionalMap;
+import org.apache.storm.trident.state.OpaqueValue;
+import org.apache.storm.trident.state.State;
+import org.apache.storm.trident.state.StateFactory;
+import org.apache.storm.trident.state.StateType;
+import org.apache.storm.trident.state.TransactionalValue;
+import org.apache.storm.trident.state.map.CachedMap;
+import org.apache.storm.trident.state.map.IBackingMap;
+import org.apache.storm.trident.state.map.MapState;
+import org.apache.storm.trident.state.map.NonTransactionalMap;
+import org.apache.storm.trident.state.map.OpaqueMap;
+import org.apache.storm.trident.state.map.SnapshottableMap;
+import org.apache.storm.trident.state.map.TransactionalMap;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -93,11 +93,11 @@ public class ESIndexMapState<T> implements IBackingMap<T> {
     }
 
     public static <T> Factory<OpaqueValue<T>> opaque(ClientFactory client, Class<T> type) {
-        return new OpaqueFactory<>(client, StateType.OPAQUE, new OpaqueValueSerializer<>(type));
+        return new OpaqueFactory(client, StateType.OPAQUE, new OpaqueValueSerializer<>(type));
     }
 
     public static <T> Factory<TransactionalValue<T>> transactional(ClientFactory client, Class<T> type) {
-        return new TransactionalFactory<>(client, StateType.TRANSACTIONAL, new TransactionalValueSerializer<>(type));
+        return new TransactionalFactory(client, StateType.TRANSACTIONAL, new TransactionalValueSerializer<>(type));
     }
 
     public static <T> Factory<T> nonTransactional(ClientFactory client, Class<T> type) {

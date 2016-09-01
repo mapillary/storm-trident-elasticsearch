@@ -22,7 +22,6 @@ import com.google.common.base.Preconditions;
 import org.apache.commons.lang3.StringUtils;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.client.transport.TransportClient;
-import org.elasticsearch.common.settings.ImmutableSettings;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.common.transport.LocalTransportAddress;
@@ -31,6 +30,8 @@ import org.elasticsearch.node.Node;
 import org.elasticsearch.node.NodeBuilder;
 
 import java.io.Serializable;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Map;
 
 /**
@@ -70,20 +71,24 @@ public interface ClientFactory<T extends Client> extends Serializable {
 
             Preconditions.checkNotNull(clusterHosts,"no setting found for Transport Client, make sure that you set property " + HOSTS);
 
-            TransportClient client = new TransportClient(buildSettings(clusterName));
+            TransportClient client = TransportClient.builder().settings(buildSettings(clusterName)).build();
 
             for(String hostAndPort : StringUtils.split(clusterHosts, HOST_SEPARATOR)) {
                 int portPos = hostAndPort.indexOf(PORT_SEPARATOR);
                 boolean noPortDefined = portPos == -1;
                 int port =  ( noPortDefined ) ? DEFAULT_PORT : Integer.parseInt(hostAndPort.substring(portPos + 1, hostAndPort.length()));
                 String host  = (noPortDefined) ? hostAndPort : hostAndPort.substring(0, portPos);
-                client.addTransportAddress(new InetSocketTransportAddress(host, port));
+                try {
+                    client.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(host), port));
+                } catch (UnknownHostException e) {
+                    throw new RuntimeException(e);
+                }
             }
             return client;
         }
 
         private Settings buildSettings(String clusterName) {
-            ImmutableSettings.Builder sb = ImmutableSettings.settingsBuilder();
+            Settings.Builder sb = Settings.settingsBuilder();
             if( StringUtils.isNotEmpty(clusterName)) sb.put("cluster.name", clusterName);
             if( settings != null) sb.put(settings);
 
@@ -108,13 +113,13 @@ public interface ClientFactory<T extends Client> extends Serializable {
 
         @Override
         public TransportClient makeClient(Map conf) {
-            TransportClient client = new TransportClient(buildSettings());
+            TransportClient client = TransportClient.builder().settings(buildSettings()).build();
             client.addTransportAddress(new LocalTransportAddress("1"));
             return client;
         }
 
         protected Settings buildSettings( ) {
-            ImmutableSettings.Builder sb = ImmutableSettings.settingsBuilder().put("node.local", "true");
+            Settings.Builder sb = Settings.settingsBuilder().put("node.local", "true");
             if( settings != null) sb.put(settings);
 
             return sb.build();
@@ -153,7 +158,7 @@ public interface ClientFactory<T extends Client> extends Serializable {
         }
 
         private Settings buildSettings(String clusterName) {
-            ImmutableSettings.Builder sb = ImmutableSettings.settingsBuilder().put("node.client", true);
+            Settings.Builder sb = Settings.settingsBuilder().put("node.client", true);
 
             if( StringUtils.isNotEmpty(clusterName)) sb.put("cluster.name", clusterName);
             if( settings != null) sb.put(settings);
@@ -202,7 +207,7 @@ public interface ClientFactory<T extends Client> extends Serializable {
         }
 
         private Settings buildSettings( ) {
-            ImmutableSettings.Builder sb = ImmutableSettings.settingsBuilder()
+            Settings.Builder sb = Settings.settingsBuilder()
                     .put("node.name", "elastic-storm-test")
                     .put("node.local", true)
                     .put("index.store.type", "memory");

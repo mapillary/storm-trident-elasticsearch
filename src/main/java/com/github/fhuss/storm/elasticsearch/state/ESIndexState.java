@@ -35,11 +35,11 @@ import org.elasticsearch.search.sort.SortBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import storm.trident.state.State;
-import storm.trident.state.StateFactory;
-import storm.trident.tuple.TridentTuple;
-import backtype.storm.task.IMetricsContext;
-import backtype.storm.topology.FailedException;
+import org.apache.storm.trident.state.State;
+import org.apache.storm.trident.state.StateFactory;
+import org.apache.storm.trident.tuple.TridentTuple;
+import org.apache.storm.task.IMetricsContext;
+import org.apache.storm.topology.FailedException;
 
 import com.github.fhuss.storm.elasticsearch.ClientFactory;
 import com.github.fhuss.storm.elasticsearch.Document;

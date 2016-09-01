@@ -1,17 +1,19 @@
 package com.github.fhuss.storm.elasticsearch;
 
-import backtype.storm.Config;
-import backtype.storm.LocalCluster;
-import backtype.storm.LocalDRPC;
-import backtype.storm.generated.StormTopology;
-import backtype.storm.utils.Utils;
-import com.github.tlrx.elasticsearch.test.EsSetup;
-import org.elasticsearch.common.settings.ImmutableSettings;
+import org.apache.storm.Config;
+import org.apache.storm.LocalCluster;
+import org.apache.storm.LocalDRPC;
+import org.apache.storm.generated.StormTopology;
+import org.apache.storm.utils.Utils;
+//import com.github.tlrx.elasticsearch.test.EsSetup;
+import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.settings.Settings;
 import org.junit.After;
 import org.junit.Before;
 
-import static com.github.tlrx.elasticsearch.test.EsSetup.createIndex;
+import java.nio.file.Paths;
+
+//import static com.github.tlrx.elasticsearch.test.EsSetup.createIndex;
 
 /**
  * Default class for starting/stopping storm local cluster before and after tests.
@@ -20,9 +22,9 @@ import static com.github.tlrx.elasticsearch.test.EsSetup.createIndex;
  */
 public abstract class BaseLocalClusterTest {
 
-    public static final Settings SETTINGS = ImmutableSettings.settingsBuilder().loadFromClasspath("elasticsearch.yml").build();
+    public static final Settings SETTINGS = Settings.settingsBuilder().loadFromPath(Paths.get("elasticsearch.yml")).build();
 
-    protected EsSetup esSetup;
+//    protected EsSetup esSetup;
     protected LocalCluster cluster;
     protected LocalDRPC drpc;
     protected Settings settings;
@@ -52,8 +54,8 @@ public abstract class BaseLocalClusterTest {
 
     @Before
     public void setUp() {
-        esSetup = new EsSetup(settings);
-        esSetup.execute(createIndex(index));
+//        esSetup = new EsSetup(settings);
+//        esSetup.execute(createIndex(index));
 
         drpc = new LocalDRPC();
         StormTopology topology = buildTopology();
@@ -68,7 +70,7 @@ public abstract class BaseLocalClusterTest {
     public void tearDown() {
         drpc.shutdown();
         cluster.shutdown();
-        esSetup.terminate();
+//        esSetup.terminate();
     }
 
     /**

@@ -1,10 +1,10 @@
 package com.github.fhuss.storm.elasticsearch.functions;
 
-import backtype.storm.tuple.Values;
+import org.apache.storm.tuple.Values;
 import com.google.common.collect.Lists;
-import storm.trident.operation.BaseFunction;
-import storm.trident.operation.TridentCollector;
-import storm.trident.tuple.TridentTuple;
+import org.apache.storm.trident.operation.BaseFunction;
+import org.apache.storm.trident.operation.TridentCollector;
+import org.apache.storm.trident.tuple.TridentTuple;
 
 public class ExtractSearchArgs extends BaseFunction {
     @Override

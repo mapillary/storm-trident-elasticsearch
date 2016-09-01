@@ -18,10 +18,10 @@
  */
 package com.github.fhuss.storm.elasticsearch.bolt;
 
-import backtype.storm.task.OutputCollector;
-import backtype.storm.task.TopologyContext;
-import backtype.storm.topology.OutputFieldsDeclarer;
-import backtype.storm.tuple.Tuple;
+import org.apache.storm.task.OutputCollector;
+import org.apache.storm.task.TopologyContext;
+import org.apache.storm.topology.OutputFieldsDeclarer;
+import org.apache.storm.tuple.Tuple;
 
 import com.github.fhuss.storm.elasticsearch.ClientFactory;
 import com.github.fhuss.storm.elasticsearch.Document;
@@ -102,7 +102,7 @@ public class IndexBatchBolt<T> extends RichTickTupleBolt {
 
     /**
      * (non-Javadoc)
-     * @see backtype.storm.task.IBolt#prepare(java.util.Map, backtype.storm.task.TopologyContext, backtype.storm.task.OutputCollector)
+     * @see org.apache.storm.task.IBolt#prepare(java.util.Map, org.apache.storm.task.TopologyContext, org.apache.storm.task.OutputCollector)
      */
     @Override
     public void prepare(Map stormConf, TopologyContext topologyContext, OutputCollector outputCollector) {

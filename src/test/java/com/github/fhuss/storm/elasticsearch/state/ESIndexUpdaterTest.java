@@ -1,8 +1,8 @@
 package com.github.fhuss.storm.elasticsearch.state;
 
-import backtype.storm.generated.StormTopology;
-import backtype.storm.tuple.Fields;
-import backtype.storm.tuple.Values;
+import org.apache.storm.generated.StormTopology;
+import org.apache.storm.tuple.Fields;
+import org.apache.storm.tuple.Values;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.fhuss.storm.elasticsearch.BaseLocalClusterTest;
 import com.github.fhuss.storm.elasticsearch.Document;
@@ -13,11 +13,11 @@ import com.github.fhuss.storm.elasticsearch.model.Tweet;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.junit.Assert;
 import org.junit.Test;
-import storm.trident.TridentState;
-import storm.trident.TridentTopology;
-import storm.trident.operation.builtin.FilterNull;
-import storm.trident.testing.FixedBatchSpout;
-import storm.trident.tuple.TridentTuple;
+import org.apache.storm.trident.TridentState;
+import org.apache.storm.trident.TridentTopology;
+import org.apache.storm.trident.operation.builtin.FilterNull;
+import org.apache.storm.trident.testing.FixedBatchSpout;
+import org.apache.storm.trident.tuple.TridentTuple;
 
 import java.io.IOException;
 

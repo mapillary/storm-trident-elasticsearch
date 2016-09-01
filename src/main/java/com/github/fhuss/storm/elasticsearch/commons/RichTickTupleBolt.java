@@ -18,16 +18,16 @@
  */
 package com.github.fhuss.storm.elasticsearch.commons;
 
-import backtype.storm.Config;
-import backtype.storm.Constants;
-import backtype.storm.topology.IRichBolt;
-import backtype.storm.tuple.Tuple;
+import org.apache.storm.Config;
+import org.apache.storm.Constants;
+import org.apache.storm.topology.IRichBolt;
+import org.apache.storm.tuple.Tuple;
 
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
- * A simple {@link backtype.storm.topology.base.BaseBasicBolt} implementation with tick tuple support.
+ * A simple {@link org.apache.storm.topology.base.BaseBasicBolt} implementation with tick tuple support.
  *
  * @author fhussonnois
  *
